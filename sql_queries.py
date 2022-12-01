@@ -32,7 +32,7 @@ create_user_by_song = """
 """
 
 insert_song_session_item = """
-    INSERT INTO song_session_item (artist, song_title, song_length, session_id, item_in_session)
+    INSERT INTO song_by_session_item (artist, song_title, song_length, session_id, item_in_session)
     VALUES (%s, %s, %s, %s, %s)
 """
 

@@ -3,19 +3,19 @@ from sql_queries import create_table_queries, drop_table_queries
 
 def create_cluster():
 
-    cluster = Cluster()
+    cluster = Cluster(['127.0.0.1'])
 
     session = cluster.connect()
 
-    session.execute("DROP KEYSPACE IF EXISTS udacity")
+    session.execute("DROP KEYSPACE IF EXISTS sparkify")
     session.execute("""
-        CREATE KEYSPACE IF NOT EXISTS udacity 
+        CREATE KEYSPACE IF NOT EXISTS sparkify 
         WITH REPLICATION = 
         { 'class' : 'SimpleStrategy', 'replication_factor' : 1 }
     """
     ) 
 
-    session.set_keyspace('udacity')
+    session.set_keyspace('sparkify')
 
     return cluster, session
 

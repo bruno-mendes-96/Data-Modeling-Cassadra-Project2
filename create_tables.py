@@ -2,6 +2,10 @@ from cassandra.cluster import Cluster
 from sql_queries import create_table_queries, drop_table_queries
 
 def create_cluster():
+    """
+    Creates and connects to the sparkify.
+    Returns the cluster and session.
+    """
 
     cluster = Cluster(['127.0.0.1'])
 
@@ -20,16 +24,33 @@ def create_cluster():
     return cluster, session
 
 def drop_tables(session):
-    
+    """
+    Drops each table using the queries in `drop_table_queries` list.
+    """
+
     for query in drop_table_queries:
         session.execute(query)
 
 def create_tables(session):
+    """
+    Creates each table using the queries in `create_table_queries` list. 
+    """
 
     for query in create_table_queries:
         session.execute(query)
 
 def main():
+    """
+    Create cluster and session.
+
+    Drops (if exists) and Creates the sparkify database. 
+    
+    Drops all the tables.  
+    
+    Creates all tables needed.
+    
+    Finally, shutdown session and cluster
+    """
 
     cluster, session = create_cluster()
 

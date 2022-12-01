@@ -1,10 +1,6 @@
 import pandas as pd
-import cassandra
-import re
 import os
 import glob
-import numpy as np
-import json
 from sql_queries import *
 from cassandra.cluster import Cluster
 import csv
@@ -22,7 +18,6 @@ def get_filepath_list():
     return file_path_list
 
 def write_event_datafile(file_path_list, output_filename):
-
 
     # initiating an empty list of rows that will be generated from each file
     full_data_rows_list = [] 

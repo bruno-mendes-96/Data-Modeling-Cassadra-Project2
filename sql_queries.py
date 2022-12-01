@@ -46,33 +46,30 @@ insert_user_by_song = """
     VALUES (%s, %s, %s, %s)
 """
 
-# session_id = 338, item_in_session = 4
 select_song_by_session_item = """
     SELECT 
         artist, 
         song_title,
         song_length 
-    FROM song_session 
+    FROM song_by_session_item 
     WHERE session_id = %s and item_in_session = %s
 """
 
-# user_id = 10, session_id = 182
 select_song_user_session = """
     SELECT 
         artist,
         song_title,
         firstName,
         lastName 
-    FROM song_user_session 
+    FROM song_user_session
     WHERE userId = %s AND sessionId = %s
 """
 
-# song_title = 'All Hands Against His Own'
 select_user_by_song = """
     SELECT 
         first_name,
         last_name
-    FROM user_song
+    FROM user_by_song
     WHERE song_title = %s
 """
 

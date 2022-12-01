@@ -6,6 +6,12 @@ from cassandra.cluster import Cluster
 import csv
 
 def get_filepath_list():
+    """
+    This function get all filenames of the files inside event_data folder - The filepaths are returned.
+
+    OUTPUT
+        * file_path_list - List that contained all filepaths of event_data folder.
+    """
         
     # Get your current folder and subfolder event data
     filepath = os.getcwd() + '/event_data'
@@ -18,6 +24,13 @@ def get_filepath_list():
     return file_path_list
 
 def write_event_datafile(file_path_list, output_filename):
+    """
+    This function read all event files and concat all lines into one unique csv.
+
+    INPUT
+        * file_path_list - List that contained all filepaths of event_data folder.
+        * output_filename - Name of the output csv
+    """
 
     # initiating an empty list of rows that will be generated from each file
     full_data_rows_list = [] 
@@ -48,17 +61,33 @@ def write_event_datafile(file_path_list, output_filename):
                 continue
             writer.writerow((row[0], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[12], row[13], row[16]))
 
-    return output_filename
-
 def get_session():
+    """
+    This function instantiates the cluster and creates a session.
+
+    OUTPUT
+        * session - Connection in cluster.
+        * cluster - Cluster.
+    """
 
     cluster = Cluster(['127.0.0.1'])
+
     session = cluster.connect()
     session.set_keyspace('sparkify')
 
     return session, cluster
 
 def etl(output_filename):
+    """
+    This function reads the csv and iterates over the rows.
+    Function get_session are executed and the session are used to execute insert queries.
+    The respective columns are selected and inserted into cassandra tables.
+
+    INPUT
+        * output_filename - CSV with all event_data concatenated.
+
+    RETURNS nothing.
+    """
 
     df = pd.read_csv(output_filename)
     session, cluster = get_session()
@@ -69,6 +98,13 @@ def etl(output_filename):
         session.execute(insert_user_by_song, (line.user_id, line.first_name, line.last_name, line.song))
 
 def main():
+    """
+    This function extract, transform and load all data.
+
+    First, all CSVs are concatenated ans saved into one archive with "output_filename" name.
+
+    The function "etl" are executed and cassandra tables are populated with event_data.
+    """
 
     filepath_list = get_filepath_list()
     output_filename = 'event_datafile_new.csv'

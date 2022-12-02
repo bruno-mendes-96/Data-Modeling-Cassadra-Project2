@@ -12,6 +12,7 @@ create_song_session_item = """
 create_song_user_session = """
     CREATE TABLE IF NOT EXISTS song_by_user_session (
         song_title TEXT,
+        artist TEXT,
         session_id INT,
         item_in_session INT,
         user_id INT,
@@ -37,8 +38,8 @@ insert_song_session_item = """
 """
 
 insert_song_user_session = """
-    INSERT INTO song_by_user_session (song_title, session_id, item_in_session, user_id, first_name, last_name)
-    VALUES (%s, %s, %s, %s, %s, %s)
+    INSERT INTO song_by_user_session (song_title, artist, session_id, item_in_session, user_id, first_name, last_name)
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
 """
 
 insert_user_by_song = """
@@ -59,19 +60,13 @@ select_song_user_session = """
     SELECT 
         artist,
         song_title,
-        firstName,
-        lastName 
-    FROM song_user_session
-    WHERE userId = %s AND sessionId = %s
+        first_name,
+        last_name 
+    FROM song_by_user_session
+    WHERE user_id = %s AND session_id = %s
 """
 
-select_user_by_song = """
-    SELECT 
-        first_name,
-        last_name
-    FROM user_by_song
-    WHERE song_title = %s
-"""
+select_user_by_song = "SELECT first_name, last_name FROM user_by_song WHERE song_title = '%s'"
 
 drop_song_session_item = 'DROP TABLE IF EXISTS song_by_session_item'
 drop_song_user_session = 'DROP TABLE IF EXISTS song_by_user_session'

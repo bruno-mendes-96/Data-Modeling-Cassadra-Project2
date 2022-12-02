@@ -94,7 +94,7 @@ def etl(output_filename):
 
     for i, line in df.iterrows():
         session.execute(insert_song_session_item, (line.artist, line.song, line.length, line.session_id, line.item_in_session))
-        session.execute(insert_song_user_session, (line.song, line.session_id, line.item_in_session, line.user_id, line.first_name, line.last_name))
+        session.execute(insert_song_user_session, (line.song, line.artist, line.session_id, line.item_in_session, line.user_id, line.first_name, line.last_name))
         session.execute(insert_user_by_song, (line.user_id, line.first_name, line.last_name, line.song))
 
 def main():

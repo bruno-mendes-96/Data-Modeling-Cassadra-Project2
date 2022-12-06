@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import glob
-from sql_queries import *
+from cql_queries import *
 from cassandra.cluster import Cluster
 import csv
 

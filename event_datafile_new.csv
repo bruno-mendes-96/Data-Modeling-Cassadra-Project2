@@ -1,4 +1,4 @@
-"artist","first_name","gender","item_in_session","last_name","length","level","location","session_id","song","user_id"
+"artist","firstName","gender","itemInSession","lastName","length","level","location","sessionId","song","userId"
 "N.E.R.D. FEATURING MALICE","Jayden","M","0","Fox","288.9922","free","New Orleans-Metairie, LA","184","Am I High (Feat. Malice)","101"
 "Death Cab for Cutie","Stefany","F","1","White","216.42404","free","Lubbock, TX","82","A Lack Of Color (Album Version)","83"
 "Tracy Gang Pussy","Stefany","F","2","White","221.33506","free","Lubbock, TX","82","I Have A Wish","83"

@@ -1,4 +1,4 @@
-from sql_queries import select_song_by_session_item, select_song_user_session, select_user_by_song
+from cql_queries import select_song_by_session_item, select_song_user_session, select_user_by_song
 from etl import get_session
 
 def query_one(session):

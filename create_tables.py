@@ -1,5 +1,5 @@
 from cassandra.cluster import Cluster
-from sql_queries import create_table_queries, drop_table_queries
+from cql_queries import create_table_queries, drop_table_queries
 
 def create_cluster():
     """

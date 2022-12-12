@@ -17,7 +17,7 @@ The <code>create_tables.py</code> file contains functions that instanciate the c
 
 The <code>etl.py</code> file contains functions that extract, transform and load the CSV files into the NoSQL database.
 
-<code>test.py</code> is a file that run test and answers business questions.
+<code>test.py</code> is a file that gives answers business questions.
 
 <h1> Data description </h1>
 
